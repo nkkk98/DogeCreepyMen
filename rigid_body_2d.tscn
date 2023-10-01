@@ -1,0 +1,80 @@
+[gd_scene load_steps=12 format=3 uid="uid://ck32neeyero1m"]
+
+[ext_resource type="Script" path="res://rigid_body_2d.gd" id="1_dil5v"]
+[ext_resource type="Texture2D" uid="uid://nb2s1o3uds6n" path="res://art/enemyFlyingAlt_1.png" id="1_t7grk"]
+[ext_resource type="Texture2D" uid="uid://ds5vbamt7f5d3" path="res://art/enemyFlyingAlt_2.png" id="2_dny7t"]
+[ext_resource type="Texture2D" uid="uid://e38xtb1gxviv" path="res://art/enemySwimming_1.png" id="3_hkymn"]
+[ext_resource type="Texture2D" uid="uid://ds3ayegxmo22o" path="res://art/enemySwimming_2.png" id="4_1svk8"]
+[ext_resource type="Texture2D" uid="uid://buenwdciqk7hk" path="res://art/walkCostume1.png" id="6_4lyik"]
+[ext_resource type="Texture2D" uid="uid://cotcu2rb157py" path="res://art/enemyWalking_1.png" id="6_8rdoe"]
+[ext_resource type="Texture2D" uid="uid://bmuj2q5olwxq2" path="res://art/enemyWalking_2.png" id="7_eu23w"]
+[ext_resource type="Texture2D" uid="uid://d2w3v67cl4gii" path="res://art/walkCostume2.png" id="7_fn0pc"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u451d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_t7grk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_dny7t")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_hkymn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_1svk8")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_8rdoe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_eu23w")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_4lyik")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_fn0pc")
+}],
+"loop": true,
+"name": &"walkCostume",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xj861"]
+radius = 45.0
+height = 120.0
+
+[node name="RigidBody2D" type="RigidBody2D" groups=["mobs"]]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_dil5v")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_u451d")
+animation = &"fly"
+metadata/_edit_lock_ = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_xj861")
